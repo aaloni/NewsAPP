@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="sidebar">
+
+
+</nav>
+<!--Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+            </li>
+
+            <!--Save articles to DB-->
+            <form action='actionUrl'  method='GET'>
+                <button class="btn btn-sm  btn-outline-secondary" type='submit'> Save Articles</button>
+            </form>
+
+            {% else %}
+
+            <div>
+                 <a class="nav-link" href="/register">Create an account</a>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+
+            {% endif %}
+        </ul>
+
+    </div>
+</nav>
+
+</body>
+<!--CSS style-->
+<style>
+    .sidebar{
+        position: fixed;
+        width: 250px;
+        height: 100%;
+        top: 0px;
+        right:0px;
+
+    }
+    .sidebar a{
+        width: 250px;
+        display: block;
+        margin: 24px 0px;
+        padding: 10px 5px;
+        font-weight: bolder;
+        font-size: large;
+        text-decoration: none;
+        text-align: center;
+    }
+</style>
+</html>
