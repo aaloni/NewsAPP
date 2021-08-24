@@ -12,7 +12,7 @@ Platform:
 - Django 3.2.6
 
 Directories:
-- News is the application (views,models,forms...)
+- NewsAPP/News is the application (views,models,forms...)
 - NewsApp is the project(Settings, urls,...)
 
 Usage:
