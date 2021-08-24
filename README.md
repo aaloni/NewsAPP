@@ -1,6 +1,5 @@
 
-*This is an interview project has been
-requested by Takamol Holding*
+*Interview project*
 
 # NewsAPP
 
