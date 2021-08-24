@@ -155,6 +155,8 @@ def storea_rticles(request):
     for i in data:
         title=i["title"]
         url=i["url"]
-        art_fav=Article.objects.create(title=title,url=url)
+        description=i["description"]
+        #pub_date =i["publishedAt"]
+        art_fav=Article.objects.create(title=title,url=url,description=description)
         art_fav.save()
     return redirect("Home")

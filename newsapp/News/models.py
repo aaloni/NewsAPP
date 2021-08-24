@@ -16,11 +16,11 @@ class CustomUser(AbstractUser):
 
 #Create article table
 class Article(models.Model):
-    pub_date = models.DateField(null=True,blank=True)
+    #pub_date = models.DateField(null=True,blank=True)
     title = models.CharField(max_length=200, blank=True)
-    description = models.TextField(null=True,blank=True,)
-    url=models.URLField(null=True,blank=True,)
-    publishedat = models.ForeignKey(CustomUser, on_delete=models.CASCADE,null=True)
+    description = models.TextField(null=True,blank=True)
+    url=models.URLField(null=True,blank=True)
+   # publishedat = models.ForeignKey(CustomUser, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.title
