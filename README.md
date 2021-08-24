@@ -12,8 +12,8 @@ Platform:
 - Django 3.2.6
 
 Directories:
-- NewsAPP/News is the application (views,models,forms...)
-- NewsApp is the project(Settings, urls,...)
+- NewsAPP/newsapp/News is the application (views,models,forms...)
+- NewsAPP/newsapp/NewsApp is the project(Settings, urls,...)
 
 Usage:
  - python manage.py runserver
