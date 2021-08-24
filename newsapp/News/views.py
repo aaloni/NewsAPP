@@ -104,9 +104,10 @@ def register_request(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+            messages.success(request, "Registration successful.")
             login(request, user)
             return redirect("Home")
-            messages.success(request, 'Registration successful.')
+
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render (request=request, template_name="register.html", context={"register_form":form})
@@ -120,6 +121,7 @@ def login_request(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password,email=email)
+
             if user is not None:
                 login(request, user)
                 messages.success(request, f"You are now logged in as {username}.")
@@ -133,8 +135,9 @@ def login_request(request):
 
 #Logout Method
 def logout_request(request):
+
     logout(request)
-    messages.info(request, "You have successfully logged out.")
+    messages.warning(request, "You have successfully logged out.")
     return redirect("Home")
 #Save articles to DB
 def storea_rticles(request):
