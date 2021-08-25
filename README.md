@@ -29,7 +29,7 @@ A website that displays a list of news to users. Registered users can add articl
 
 Requirements:
 
-o User registration information should include:  **Done!**
+User registration information should include:
 
 o Phone number **Done!**
 
@@ -41,10 +41,10 @@ o Date of birth  **Done!**
 
 o National id - Home page with a list of articles / news (you can use https://newsapi.org/)  **Done!**
 
-- Registration /login pages.  **Done!**
+o Registration /login pages.  **Done!**
 
-- Details page to display full article.  **Done!**
+o Details page to display full article.  **Done!**
 
-- Save articles in local database.  **Done!**
+o Save articles in local database.  **Done!**
 
-- User can add/remove articles to his favorite list.
+o User can add/remove articles to his favorite list.
