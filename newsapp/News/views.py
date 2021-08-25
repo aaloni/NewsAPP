@@ -154,6 +154,7 @@ def storea_rticles(request):
         )
     r = requests.get(url=url)
     data = r.json()
+
     data=data["articles"]
     for i in data:
         title=i["title"]
@@ -162,4 +163,12 @@ def storea_rticles(request):
         #pub_date =i["publishedAt"]
         art_fav=Article.objects.create(title=title,url=url,description=description)
         art_fav.save()
-    return redirect("Home")
+    artsaved = Article.objects.all()
+
+    arts = {
+        "title": artsaved,
+        "url": artsaved
+    }
+
+    return render(request, 'artsaved.html', context=arts)
+   # return render_to_response("artsaved.html", arts)

@@ -16,6 +16,7 @@ class CustomUser(AbstractUser):
 
 #Create article table
 class Article(models.Model):
+
     #pub_date = models.DateField(null=True,blank=True)
     title = models.CharField(max_length=200, blank=True)
     description = models.TextField(null=True,blank=True)
