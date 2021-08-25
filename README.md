@@ -25,7 +25,7 @@ A website that displays a list of news to users. Registered users can add articl
 
 Requirements:
 
-- User registration information should include:  **Done!**
+o User registration information should include:  **Done!**
 
 o Phone number **Done!**
 
