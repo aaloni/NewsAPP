@@ -11,14 +11,14 @@ Platform:
 - Python 3.9
 - Django 3.2.6
 
-- Windows OS requirements:
- - pip install django
- - pip install django-crispy-forms
- - pip install requests
+Windows OS requirements:
+- pip install django
+- pip install django-crispy-forms
+- pip install requests
 
 Usage:
- - cd  NewsAPP/newsapp/
- - python manage.py runserver
+- cd  NewsAPP/newsapp/
+- python manage.py runserver
 
 Directories overview:
 - NewsAPP/newsapp/News is the application (views,models,forms...)
