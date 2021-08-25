@@ -25,12 +25,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Welcome, {{user.username}}</a>
             </li>
-
+            <div style=" padding: 2px">
             <!--Save articles to DB-->
             <form action='actionUrl'  method='GET'>
                 <button class="btn btn-sm  btn-outline-secondary" type='submit'> Save Articles</button>
             </form>
-
+                 </div>
+            <div style=" padding: 2px">
+             <form action='artdb'  method='GET'>
+                <button class="btn btn-sm btn-inverse btn-secondary " type='submit'> Articles Database</button>
+            </form>
+                </div>
             {% else %}
             <div><li class="nav-item">
                 <a class="nav-link" href="index">Home</a>
@@ -39,7 +44,7 @@
                 <a class="nav-link" href="/login">Login</a>
             </li></div>
             <div>
-                 <a class="nav-link" href="/register">Create an account</a>
+                <a class="nav-link" href="/register">Create an account</a>
             </div>
 
             {% endif %}

@@ -10,6 +10,7 @@ urlpatterns = [
     path("login", views.login_request, name="login"),
     path("logout", views.logout_request, name="logout"),
     path("actionUrl", views.storea_rticles,name="actionUrl"),
+    path('artdb', views.artdb, name="artdb"),
 
 
 

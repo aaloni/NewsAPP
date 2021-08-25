@@ -166,6 +166,16 @@ def storea_rticles(request):
         #pub_date =i["publishedAt"]
         art_fav=Article.objects.create(title=title,url=url,description=description)
         art_fav.save()
-    messages.success(request, "You saved the articles!")
+    messages.success(request, "You saved the articles to the database!")
     return redirect("Home")
 
+def artdb(request):
+    data = Article.objects.all()
+
+    art = {
+        "art_id":data
+
+    }
+
+
+    return render(request, "artdb.html", context=art)

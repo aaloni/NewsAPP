@@ -15,20 +15,22 @@ class CustomUser(AbstractUser):
     birth_date = models.DateField(null=True,blank=True)
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
-
     def __str__(self):
         return self.username
 
 #Create article table
 class Article(models.Model):
-
-    #pub_date = models.DateField(null=True,blank=True)
+    art_id = models.IntegerField(primary_key=True)
+    pub_date = models.DateField(null=True,blank=True)
     title = models.CharField(max_length=200, blank=True)
     description = models.TextField(null=True,blank=True)
     url=models.URLField(null=True,blank=True)
 
     # publishedat = models.ForeignKey(CustomUser, on_delete=models.CASCADE,null=True)
+    class Meta:
+        db_table = 'article'
+
     def __str__(self):
-        return self.title
+        return str(self.art_id)
 
 
