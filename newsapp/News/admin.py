@@ -13,6 +13,6 @@ class CustomUserAdmin(UserAdmin):
 
 #Articles fields in Admin account
 admin.site.register(models.Article)
-
-
 admin.site.register(CustomUser, CustomUserAdmin)
+
+

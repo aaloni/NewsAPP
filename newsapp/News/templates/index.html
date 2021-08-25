@@ -17,23 +17,25 @@
 {% for message in messages %}
 <div class="container-fluid p-0">
   <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+
     {{ message }}
   </div>
 </div>
 {% endfor %}
+
 <!--Article Container-->
 <div class="container" id="articles-container">
+
     {% for value in data %}
     <div class="card mb-3 box" style="max-width: 640px; margin:auto;">
         <div class="row">
             <div class="col-md-8">
                 <div class="card-body">
+                    <p class="card-text">{{value.id}}</p>
                     <h5 class="card-title"><a href="{{value.url}}" target="_blanck">{{value.title}}</a></h5>
                     <p class="card-text">{{value.description}}</p>
                     <p class="card-text"><small class="text-muted">{{value.publishedat}}</small></p>
+
                 </div>
             </div>
             <div class="col-md-4 img-box">
@@ -42,10 +44,15 @@
         </div>
         <div class="col-md-7 d-flex justify-content-between">
         </div>
-        <div>
-        </div>
+
+        {% if request.user.is_authenticated %}
+
+
+      {% endif %}
+
     </div>
     {% endfor %}
+
 </div>
 <h1 id="loading">Loading....</h1>
 </body>
@@ -77,6 +84,51 @@
 </style>
 <!--JS script-->
 <script>
+function bookmark_toggle(btn) {
+    data_id = btn.getAttribute('data-id');
+
+    var bookmark_count = document.querySelector(".bookmark-count[data-id='"+data_id+"']");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', btn.getAttribute('data-href'));
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+        if (xhr.status != 200) {
+            console. error(`Error ${xhr.status}: ${xhr.statusText}`);
+        }
+        if (xhr.status == 200) {
+            bookmark_count.innerHTML=xhr.response.bookmarks_count;
+            if (xhr.response.bookmarked) {
+                btn.classList.add('text-green');
+            } else {
+                btn.classList.remove('text-green');
+            }
+        }
+    };
+    xhr.send();
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+const bookmark_buttons = document.querySelectorAll(".bookmark-btn");
+for (const btn of bookmark_buttons) {
+    if (btn.hasAttribute('data-href')) {
+        btn.addEventListener('click', function(event){
+            event.preventDefault();
+            bookmark_toggle(btn);
+        });
+    }
+}
+});
+
+
+
+
+$(function () {
+    $.ajaxSetup({
+        headers: { "X-CSRFToken": getCookie("csrftoken") }
+    });
+});
 
 $(document).ready(function() {
     console.log( "ready!" );
@@ -139,7 +191,6 @@ window.addEventListener('scroll', function(e) {
         }
     }
 })
-
 
 </script>
 </html>

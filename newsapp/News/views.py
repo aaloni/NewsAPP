@@ -6,10 +6,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
 from .models import Article
-
-
+from django.shortcuts import render, redirect
 temp_img = "https://images.pexels.com/photos/3225524/pexels-photo-3225524.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
 
 
@@ -83,15 +81,18 @@ def loadcontent(request):
         context = {
             "success": True,
             "data": [],
-            "search": search
+            "search": search,
+
         }
         for i in data:
+
             context["data"].append({
                 "title": i["title"],
                 "description":  "" if i["description"] is None else i["description"],
                 "url": i["url"],
                 "image": temp_img if i["urlToImage"] is None else i["urlToImage"],
                 "publishedat": i["publishedAt"]
+
             })
 
         return JsonResponse(context)
@@ -107,10 +108,12 @@ def register_request(request):
             messages.success(request, "Registration successful.")
             login(request, user)
             return redirect("Home")
+        else:
+            messages.error(request, "Unsuccessful registration. Invalid information.")
 
-        messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render (request=request, template_name="register.html", context={"register_form":form})
+
 
 #Login Method
 def login_request(request):
@@ -139,6 +142,7 @@ def logout_request(request):
     logout(request)
     messages.warning(request, "You have successfully logged out.")
     return redirect("Home")
+
 #Save articles to DB
 def storea_rticles(request):
     page = request.GET.get('article', 1)
@@ -154,7 +158,6 @@ def storea_rticles(request):
         )
     r = requests.get(url=url)
     data = r.json()
-
     data=data["articles"]
     for i in data:
         title=i["title"]
@@ -163,12 +166,6 @@ def storea_rticles(request):
         #pub_date =i["publishedAt"]
         art_fav=Article.objects.create(title=title,url=url,description=description)
         art_fav.save()
-    artsaved = Article.objects.all()
+    messages.success(request, "You saved the articles!")
+    return redirect("Home")
 
-    arts = {
-        "title": artsaved,
-        "url": artsaved
-    }
-
-    return render(request, 'artsaved.html', context=arts)
-   # return render_to_response("artsaved.html", arts)

@@ -11,6 +11,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 import os
 
+
 #NewsAPI token
 APIKEY = "82366312f1614b19951fa823a5ea709d"
 
@@ -32,6 +33,7 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'News',#--------------------Created app has been added
     'crispy_forms',
+    'django_bookmark_base'
 ]
 
 MIDDLEWARE = [

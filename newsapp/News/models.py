@@ -1,6 +1,11 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django_bookmark_base.models import BookmarkModel
 
+
+class NewManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter()
 
 #Create user table
 class CustomUser(AbstractUser):
@@ -12,7 +17,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.national_id
+        return self.username
 
 #Create article table
 class Article(models.Model):
@@ -21,7 +26,9 @@ class Article(models.Model):
     title = models.CharField(max_length=200, blank=True)
     description = models.TextField(null=True,blank=True)
     url=models.URLField(null=True,blank=True)
-   # publishedat = models.ForeignKey(CustomUser, on_delete=models.CASCADE,null=True)
 
+    # publishedat = models.ForeignKey(CustomUser, on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.title
+
+
