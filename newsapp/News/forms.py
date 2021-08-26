@@ -8,6 +8,7 @@ YEARS= [x for x in range(1940,2021)]
 
 # Registration form with requested fields
 class NewUserForm(UserCreationForm):
+
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
 	first_name=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control'}))
 	last_name=forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -23,9 +24,11 @@ class NewUserForm(UserCreationForm):
 		model = User
 		fields = ("first_name","last_name","phone","username", "email", "password1", "password2","national_id","birth_date",)
 	#Commit new user
+
 	def save(self, commit=True):
 		user = super(NewUserForm, self).save(commit=False)
 		user.email = self.cleaned_data['email']
+
 		if commit:
 			user.save()
 		return user

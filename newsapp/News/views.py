@@ -7,7 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from .models import Article
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
 temp_img = "https://images.pexels.com/photos/3225524/pexels-photo-3225524.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
 
 
@@ -163,7 +164,6 @@ def storea_rticles(request):
         title=i["title"]
         url=i["url"]
         description=i["description"]
-        #pub_date =i["publishedAt"]
         art_fav=Article.objects.create(title=title,url=url,description=description)
         art_fav.save()
     messages.success(request, "You saved the articles to the database!")
@@ -176,6 +176,7 @@ def artdb(request):
         "art_id":data
 
     }
-
-
     return render(request, "artdb.html", context=art)
+
+def bookmark(request):
+    data = Article.objects.all()
