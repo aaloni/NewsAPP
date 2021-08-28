@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>News App</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!--Include Bootstrap framework-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -12,7 +14,7 @@
 </head>
 <body>
 <div>
-    {% include 'sidebar.html' %}
+    {% include 'bar.html' %}
 </div>
 {% for message in messages %}
 <div class="container-fluid p-0">
@@ -35,7 +37,6 @@
                     <h5 class="card-title"><a href="{{value.url}}" target="_blanck">{{value.title}}</a></h5>
                     <p class="card-text">{{value.description}}</p>
                     <p class="card-text"><small class="text-muted">{{value.publishedat}}</small></p>
-
                 </div>
             </div>
             <div class="col-md-4 img-box">
@@ -47,9 +48,7 @@
         </div>
         {% if request.user.is_authenticated %}
 
-
         {% endif %}
-
     </div>
     {% endfor %}
 
@@ -84,51 +83,6 @@
 </style>
 <!--JS script-->
 <script>
-function bookmark_toggle(btn) {
-    data_id = btn.getAttribute('data-id');
-
-    var bookmark_count = document.querySelector(".bookmark-count[data-id='"+data_id+"']");
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', btn.getAttribute('data-href'));
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-        if (xhr.status != 200) {
-            console. error(`Error ${xhr.status}: ${xhr.statusText}`);
-        }
-        if (xhr.status == 200) {
-            bookmark_count.innerHTML=xhr.response.bookmarks_count;
-            if (xhr.response.bookmarked) {
-                btn.classList.add('text-green');
-            } else {
-                btn.classList.remove('text-green');
-            }
-        }
-    };
-    xhr.send();
-}
-
-document.addEventListener("DOMContentLoaded", function(event) {
-const bookmark_buttons = document.querySelectorAll(".bookmark-btn");
-for (const btn of bookmark_buttons) {
-    if (btn.hasAttribute('data-href')) {
-        btn.addEventListener('click', function(event){
-            event.preventDefault();
-            bookmark_toggle(btn);
-        });
-    }
-}
-});
-
-
-
-
-$(function () {
-    $.ajaxSetup({
-        headers: { "X-CSRFToken": getCookie("csrftoken") }
-    });
-});
 
 $(document).ready(function() {
     console.log( "ready!" );

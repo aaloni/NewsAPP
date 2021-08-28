@@ -4,7 +4,9 @@
 <head>
     <title>News App</title>
     <meta charset="utf-8">
+    <!--Set the viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!--Include Bootstrap framework-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,12 +15,13 @@
 </head>
 <body>
 <div>
-    {% include 'sidebar.html' %}
+    <!--NavBar-->
+    {% include 'bar.html' %}
 </div>
+<!-- message system-->
 {% for message in messages %}
 <div class="container-fluid p-0">
     <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
-
         {{ message }}
     </div>
 </div>
@@ -27,26 +30,30 @@
 <!--Article Container-->
 <div class="container" id="articles-container">
 
-  {% for article in art_id %}
-    <div class="card mb-3 box" style="max-width: 640px; margin:auto;">
+    {% for article in art_id %}
+    <div class="card mb box" style="max-width: 640px; margin:auto;">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md">
                 <div class="card-body">
-                    <h5 class="card-title"><a target="_blanck">{{article.art_id}}</a></h5>
-                    <h5 class="card-title"><a target="_blanck">{{article.title}}</a></h5>
-                    <h5 class="card-title"><a target="_blanck">{{article.url}}</a></h5>
-
+                    <p class="card-text">{{article.art_id}}</p>
+                    <h5 class="card-title"><a href="{{article.url}}" target="_blanck">{{article.title}}</a></h5>
+                    <p class="card-text">{{article.description}}</p>
                 </div>
             </div>
 
         </div>
         <div class="col-md-7 d-flex justify-content-between">
-        </div>
 
+        </div>
+        {% if request.user.is_authenticated %}
+        <div>
+            <a href="{% url 'favourite_add' article.art_id %}" class="">Add to
+                Favourties</a>
+        </div>
+        {% endif %}
 
     </div>
     {% endfor %}
-
 </div>
 <h1 id="loading">Loading....</h1>
 </body>

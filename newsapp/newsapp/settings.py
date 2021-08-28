@@ -6,11 +6,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
 from pathlib import Path
 from django.contrib.messages import constants as messages
 import os
-
 
 #NewsAPI token
 APIKEY = "82366312f1614b19951fa823a5ea709d"
@@ -20,6 +18,7 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 #Override the default user model
 AUTH_USER_MODEL = "News.CustomUser"
+
 #Email as useraccount
 AUTHENTICATION_BACKENDS = ['News.backends.EmailBackend']
 
@@ -45,7 +44,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'News',#--------------------Created app has been added
     'crispy_forms',
-    'django_bookmark_base'
+
+
 ]
 
 MIDDLEWARE = [
@@ -144,6 +143,3 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = (
 #     os.path.join(PROJECT_ROOT, 'static'),
 # )
-
-
-

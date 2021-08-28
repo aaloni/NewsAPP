@@ -20,22 +20,29 @@
                 <a class="nav-link" href="index">Home</a>
             </li></div>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link" href="logout">Logout</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Welcome, {{user.username}}</a>
             </li>
             <div style=" padding: 2px">
-            <!--Save articles to DB-->
-            <form action='actionUrl'  method='GET'>
-                <button class="btn btn-sm  btn-outline-secondary" type='submit'> Save Articles</button>
-            </form>
-                 </div>
+                <!--Save articles to DB-->
+                <form action='actionUrl'  method='GET'>
+                    <button class="btn btn-sm  btn-outline-secondary" type='submit'> Save Articles</button>
+                </form>
+            </div>
+
             <div style=" padding: 2px">
-             <form action='artdb'  method='GET'>
-                <button class="btn btn-sm btn-inverse btn-secondary " type='submit'> Articles Database</button>
-            </form>
-                </div>
+                <form action='artdb'  method='GET'>
+                    <button class="btn btn-sm btn-inverse btn-secondary " type='submit'> Articles Database</button>
+                </form>
+            </div>
+
+            <div style=" padding: 2px">
+                <form action='favourites'  method='GET'>
+                    <button class="btn btn-sm btn-inverse btn-success " type='submit'> Favourites</button>
+                </form>
+            </div>
             {% else %}
             <div><li class="nav-item">
                 <a class="nav-link" href="index">Home</a>

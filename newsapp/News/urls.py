@@ -1,6 +1,6 @@
 from django.urls import path
-from django.conf.urls import url
 from . import views
+
 
 #App urls
 urlpatterns = [
@@ -10,14 +10,10 @@ urlpatterns = [
     path("register", views.register_request, name="register"),
     path("login", views.login_request, name="login"),
     path("logout", views.logout_request, name="logout"),
-    path("actionUrl", views.storea_rticles,name="actionUrl"),
+    path("actionUrl", views.store_articles,name="actionUrl"),
     path('artdb', views.artdb, name="artdb"),
-
-
-
-
-
-
+    path('fav/<int:art_id>/', views.favourite_add, name='favourite_add'),
+    path("favourites/", views.favourite_list, name="favourites"),
 
 ]
 

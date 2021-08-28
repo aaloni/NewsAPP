@@ -23,8 +23,8 @@ class NewUserForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ("first_name","last_name","phone","username", "email", "password1", "password2","national_id","birth_date",)
-	#Commit new user
 
+	#Commit new user
 	def save(self, commit=True):
 		user = super(NewUserForm, self).save(commit=False)
 		user.email = self.cleaned_data['email']
