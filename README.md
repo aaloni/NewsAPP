@@ -10,18 +10,21 @@ Platform:
 - Python 3.9
 - Django 3.2.6
 
+API:
+- Newsapi (https://newsapi.org/)
+
 Windows OS requirements:
 - pip install django
 - pip install django-crispy-forms
 - pip install requests
 
 Usage:
-- cd  NewsAPP/newsapp/
+- cd  ./NewsAPP/newsapp/
 - python manage.py runserver
 
 Directories overview:
-- NewsAPP/newsapp/News is the application (views,models,forms...)
-- NewsAPP/newsapp/NewsApp is the project(Settings, urls,...)
+- Application directory: NewsAPP/newsapp/News
+- Project directory: NewsAPP/newsapp/NewsApp
 
 Overview:
 
@@ -47,4 +50,13 @@ o Details page to display full article.  **Done!**
 
 o Save articles in local database.  **Done!**
 
-o User can add/remove articles to his favorite list.
+o User can add/remove articles to his favorite list.  **Done!**
+
+***Notes***
+- To create a superuser account:
+  * python manage.py createsuperuser
+- To see all features (Favorite, Save Articles,.. ) you need to register.
+- To add to favorite, you need to save articles first then go to the "Articles Database".
+- To browse your favorite (Add or Remove) go to Favourites.
+
+*This project has been done by Abdullah Almutairi as interview project for Takamol Holding*
