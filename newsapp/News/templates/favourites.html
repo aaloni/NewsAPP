@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>News App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Include Bootstrap framework-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div>
+    <!--Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                <div><li class="nav-item">
+                    <a class="nav-link" href="../index">Home</a>
+                </li></div>
+                <li class="nav-item">
+                    <a class="nav-link" href="../logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+                </li>
+                <div style=" padding: 2px">
+                    <!--Save articles to DB-->
+                    <form action='../actionUrl'  method='GET'>
+                        <button class="btn btn-sm  btn-outline-secondary" type='submit'> Save Articles</button>
+                    </form>
+                </div>
+
+                <div style=" padding: 2px">
+                    <form action='../artdb'  method='GET'>
+                        <button class="btn btn-sm btn-inverse btn-secondary " type='submit'> Articles Database</button>
+                    </form>
+                </div>
+
+                <div style=" padding: 2px">
+                    <form action='../favourites'  method='GET'>
+                        <button class="btn btn-sm btn-inverse btn-success " type='submit'> Favourites</button>
+                    </form>
+                </div>
+                {% else %}
+
+
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+
+</div>
+{% for message in messages %}
+<div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+
+        {{ message }}
+    </div>
+</div>
+{% endfor %}
+<!--Article Container-->
+<div class="container" id="articles-container">
+    {% for post in new %}
+    <div class="card mb box" style="max-width: 640px; margin:auto;">
+        <div class="row">
+            <div class="col-md">
+                <div class="card-body">
+                    <p class="card-text">{{post.art_id}}</p>
+                    <h5 class="card-title"><a href="{{post.url}}" target="_blanck">{{post.title}}</a></h5>
+                    <p class="card-text">{{post.description}}</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div id="favourite-section"><a href="{% url 'favourite_add' post.art_id %}"
+                                                   class="btn btn-outline-primary">Remove</a></div>
+                </div>
+            </div>
+
+        </div>
+
+        {% if request.user.is_authenticated %}
+
+        {% endif %}
+
+    </div>
+    {% endfor %}
+</div>
+<h1 id="loading">Loading....</h1>
+</body>
+<!--CSS style-->
+<style>
+#articles-container{
+    margin-right: 250px;
+}
+.box{
+    transition-property: box-shadow, transform;
+    transition-duration: 1s;
+}
+.box:hover{
+    /* box-shadow: 2px 2px 5px #8080807a; */
+    box-shadow: 1px 2px 8px 0px #00bcffb0;
+    transform: translateY(-9px);
+}
+.img-box{
+    padding: 20px;
+}
+.img-box img{
+    border-radius: 15px;
+    object-fit: cover;
+}
+#loading{
+    text-align: center;
+    display: none;
+}
+</style>
